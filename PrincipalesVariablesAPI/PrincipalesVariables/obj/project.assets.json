@@ -465,11 +465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\EstadisticaBCRA\\PrincipalesVariables\\PrincipalesVariables\\PrincipalesVariables.csproj",
+      "projectUniqueName": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\estadisticas-BCRA\\PrincipalesVariablesAPI\\PrincipalesVariables\\PrincipalesVariables.csproj",
       "projectName": "PrincipalesVariables",
-      "projectPath": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\EstadisticaBCRA\\PrincipalesVariables\\PrincipalesVariables\\PrincipalesVariables.csproj",
+      "projectPath": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\estadisticas-BCRA\\PrincipalesVariablesAPI\\PrincipalesVariables\\PrincipalesVariables.csproj",
       "packagesPath": "C:\\Users\\Sergio-desktop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\EstadisticaBCRA\\PrincipalesVariables\\PrincipalesVariables\\obj\\",
+      "outputPath": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\estadisticas-BCRA\\PrincipalesVariablesAPI\\PrincipalesVariables\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sergio-desktop\\AppData\\Roaming\\NuGet\\NuGet.Config",

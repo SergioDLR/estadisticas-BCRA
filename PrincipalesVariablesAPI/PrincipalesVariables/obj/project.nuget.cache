@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X/A3V35+1BMNM+8rJjK3nCq3eURUuw9r7xXj8wjRWrcnpIRGweamZxpFjX5cRC4b1Yj8XBIWojfFggQfo0DsQQ==",
+  "dgSpecHash": "Sktab0WTqbFmioLdjAFKwGiwjbk8rbrTqSJ/AosjrwUymjeCRyY8/ID3Pam2Nylol6yaoF75tRWpt69dpQGVuw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\EstadisticaBCRA\\PrincipalesVariables\\PrincipalesVariables\\PrincipalesVariables.csproj",
+  "projectFilePath": "C:\\Users\\Sergio-desktop\\ProyectosPersonales\\estadisticas-BCRA\\PrincipalesVariablesAPI\\PrincipalesVariables\\PrincipalesVariables.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sergio-desktop\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.2\\microsoft.aspnetcore.openapi.8.0.2.nupkg.sha512",
     "C:\\Users\\Sergio-desktop\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
