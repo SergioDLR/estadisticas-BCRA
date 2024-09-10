@@ -7,41 +7,32 @@ namespace PrincipalesVariables.Services;
 
 public class StatsBcraServices
 {
-    private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("https://api.bcra.gob.ar") };
+  
 
     private readonly IConfiguration _config;
     public StatsBcraServices(IConfiguration config)
     {
         _config = config;
     }
-    public async Task<ResponseDTO<Stat[]>> GetMainStats()
-    {
-        var response = await _httpClient.GetAsync("/estadisticas/v2.0/PrincipalesVariables");
-        response.EnsureSuccessStatusCode();
-        var responseBody = await response.Content.ReadFromJsonAsync<PrincipalStatsResponse>();
-        var responseDto = new ResponseDTO<Stat[]> { data = responseBody.results};
-        return responseDto;
-    }
-
-    public async Task<ResponseDTO<Stat>> GetMainStatsById(int id)
-    {
-        var response = await _httpClient.GetAsync("/estadisticas/v2.0/PrincipalesVariables");
-        response.EnsureSuccessStatusCode();
-        var responseBody = await response.Content.ReadFromJsonAsync<PrincipalStatsResponse>();
-        var responseDto = new ResponseDTO<Stat> { data = responseBody.results.FirstOrDefault(stat => stat.idVariable == id) };
-        return responseDto;
-    }
-
-    public async Task<ResponseDTO<Stat[]>> GetMinStatsFromDB()
+    public async Task<ResponseDTO<Value[]>> GetMainStats()
     {
         var conection = new SqlConnection(_config.GetConnectionString("DbStringConnection"));
-        
-        var res = await conection.QueryAsync<Stat>("");
-      
-      
-        var responseDto = new ResponseDTO<Stat[]> { data = res.ToArray()};
+        var res = await conection.QueryAsync<Value>("select value.dateValue, value.idVariable, value.value, variable.cdSerie, variable.description from Value value inner join Variable variable on variable.idVariable = value.idVariable");
+       
+        var responseDto = new ResponseDTO<Value[]> { data = res.ToArray()};
         return responseDto;
     }
+
+    public async Task<ResponseDTO<Value>> GetMainStatsById(int id)
+    {
+        var conection = new SqlConnection(_config.GetConnectionString("DbStringConnection"));
+        var res = await conection.QueryAsync<Value>(@"select value.dateValue, value.idVariable, value.value, variable.cdSerie, variable.description from Value value inner join Variable variable on variable.idVariable = value.idVariable where value.idVariable = @Id",new{Id=id});
+       
+        var responseDto = new ResponseDTO<Value> { data = res.FirstOrDefault()};
+        return responseDto;
+    }
+
+   
 
 
     public async Task<ResponseDTO<Variable[]>> GetVariableCombo()

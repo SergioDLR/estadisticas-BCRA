@@ -22,3 +22,12 @@ public class Variable
     public string description { get; set; }
     public int cdSerie { get; set; }
 }
+
+public class Value
+{
+    public int idVariable { get; set; }
+    public int cdSerie { get; set; }
+    public string description { get; set; }
+    public string dateValue { get; set; }
+    public decimal  value { get; set; }
+}

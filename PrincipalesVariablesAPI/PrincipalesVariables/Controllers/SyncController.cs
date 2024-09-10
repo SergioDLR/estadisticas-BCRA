@@ -13,8 +13,15 @@ public class SyncController(IConfiguration config)
     }
     
     private void Sync()
+    
     {
-          _syncServices.SyncStats();
+        try
+        {
+            _syncServices.SyncStats();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
-
 }

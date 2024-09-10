@@ -25,13 +25,19 @@ public class SyncServices
 
         if (responseBody == null) return;
         
-        for (var i = 0; i < responseBody.results.Length; i++)
+        foreach (var t in responseBody.results)
         {
             await conection.QueryAsync(@"if  0 = (SELECT COUNT(*) FROM Variable v WHERE v.idVariable = @IdVariable) INSERT INTO BCRAPrincipal.dbo.Variable (idVariable, description, cdSerie) VALUES(@IdVariable,@Descripcion, @CdSerie)" , new
             {
-                IdVariable = responseBody.results[i].idVariable,
-                Descripcion = responseBody.results[i].descripcion,
-                CdSerie = responseBody.results[i].cdSerie
+                IdVariable = t.idVariable,
+                Descripcion = t.descripcion,
+                CdSerie = t.cdSerie
+            });
+            await conection.QueryAsync(@"if  0 = (SELECT COUNT(*) FROM Value v WHERE v.idVariable = @IdVariable AND  v.dateValue = @DateValue ) INSERT INTO BCRAPrincipal.dbo.Value (dateValue , idVariable, value) VALUES(@DateValue,@IdVariable, @Value)" , new
+            {
+                IdVariable = t.idVariable,
+                DateValue = t.fecha,
+                Value = t.valor
             });
         }
     }

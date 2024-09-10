@@ -22,12 +22,12 @@ public class StatsBcraController
         routes.MapGet("/statsbcra/comboVarible", GetVariabletCombo);
     }
 
-    private async Task<ResponseDTO<Stat[]>> GetMainStatsHandler()
+    private async Task<ResponseDTO<Value[]>> GetMainStatsHandler()
     {
         return await _statsService.GetMainStats();
     }
 
-    private async Task<ResponseDTO<Stat>> GetMainStatsHandlerById(int id)
+    private async Task<ResponseDTO<Value>> GetMainStatsHandlerById(int id)
     {
         return await _statsService.GetMainStatsById(id);
     }

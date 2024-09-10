@@ -10,12 +10,12 @@ CREATE TABLE Variable (
 
 
 CREATE TABLE Value (
-   	dateValue DATE PRIMARY KEY,
+   	dateValue DATE ,
     idVariable INT,  
     value float NOT NULL,
-    FOREIGN KEY (idVariable) REFERENCES Variable(idVariable)
+    PRIMARY KEY(dateValue, idVariable),
+    FOREIGN KEY (idVariable) REFERENCES Variable(idVariable),
 );
 
-
-
--- rollback empty
+-- rollback DROP TABLE Value;
+-- rollback DROP TABLE Variable;
