@@ -14,3 +14,11 @@ public class Stat
     public string fecha { get; set; }
     public decimal  valor { get; set; }
 }
+
+
+public class Variable
+{
+    public int idVariable { get; set; }
+    public string description { get; set; }
+    public int cdSerie { get; set; }
+}
