@@ -30,4 +30,6 @@ public class Value
     public string description { get; set; }
     public string dateValue { get; set; }
     public decimal  value { get; set; }
+    public decimal variation { get; set; }
+    
 }
