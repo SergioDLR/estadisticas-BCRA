@@ -8,12 +8,8 @@ builder.Services.AddSingleton<StatsBcraController>();
 builder.Services.AddSingleton<SyncController>();
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.Services.GetRequiredService<StatsBcraController>().MapEndpoints(app);

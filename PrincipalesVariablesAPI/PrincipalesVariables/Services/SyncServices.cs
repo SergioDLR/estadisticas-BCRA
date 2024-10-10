@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using Dapper;
+using Npgsql;
 using PrincipalesVariables.Models;
 
 namespace PrincipalesVariables.Services;
@@ -18,7 +19,7 @@ public class SyncServices
     
     public async void SyncStats()
     {
-        var conection = new SqlConnection(_config.GetConnectionString("DbStringConnection"));
+        var conection = new NpgsqlConnection(_config.GetConnectionString("DbStringConnection"));
         var response = await _httpClient.GetAsync("/estadisticas/v2.0/PrincipalesVariables");
         response.EnsureSuccessStatusCode();
         var responseBody = await response.Content.ReadFromJsonAsync<PrincipalStatsResponse>();

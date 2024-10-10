@@ -2,7 +2,8 @@
 using PrincipalesVariables.Models;
 using System.Data.SqlClient;
 using Dapper;
-    
+using Npgsql;
+
 namespace PrincipalesVariables.Services;
 
 public class StatsBcraServices
@@ -16,7 +17,7 @@ public class StatsBcraServices
     }
     public async Task<ResponseDTO<Value[]>> GetMainStats()
     {
-        var conection = new SqlConnection(_config.GetConnectionString("DbStringConnection"));
+        var conection = new NpgsqlConnection(_config.GetConnectionString("DbStringConnection"));
         var res = await conection.QueryAsync<Value>("select value.dateValue, value.idVariable, value.value, variable.cdSerie, variable.description from Value value inner join Variable variable on variable.idVariable = value.idVariable");
        
         foreach (var stat in res)
@@ -35,7 +36,7 @@ public class StatsBcraServices
 
     public async Task<ResponseDTO<Value>> GetMainStatsById(int id)
     {
-        var conection = new SqlConnection(_config.GetConnectionString("DbStringConnection"));
+        var conection = new NpgsqlConnection(_config.GetConnectionString("DbStringConnection"));
         var res = await conection.QueryAsync<Value>(@"select value.dateValue, value.idVariable, value.value, variable.cdSerie, variable.description from Value value inner join Variable variable on variable.idVariable = value.idVariable where value.idVariable = @Id",new{Id=id});
         
         var responseDto = new ResponseDTO<Value> { data = res.FirstOrDefault()};
