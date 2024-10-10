@@ -28,16 +28,20 @@ public class SyncServices
         
         foreach (var t in responseBody.results)
         {
-            await conection.QueryAsync(@"if  0 = (SELECT COUNT(*) FROM Variable v WHERE v.idVariable = @IdVariable) INSERT INTO BCRAPrincipal.dbo.Variable (idVariable, description, cdSerie) VALUES(@IdVariable,@Descripcion, @CdSerie)" , new
+            await conection.QueryAsync(@"INSERT INTO Variable (idVariable, description, cdSerie)
+        VALUES (@IdVariable, @Descripcion, @CdSerie)
+            ON CONFLICT (idVariable) DO NOTHING;" , new
             {
                 IdVariable = t.idVariable,
                 Descripcion = t.descripcion,
                 CdSerie = t.cdSerie
             });
-            await conection.QueryAsync(@"if  0 = (SELECT COUNT(*) FROM Value v WHERE v.idVariable = @IdVariable AND  v.dateValue = @DateValue ) INSERT INTO BCRAPrincipal.dbo.Value (dateValue , idVariable, value) VALUES(@DateValue,@IdVariable, @Value)" , new
+            await conection.QueryAsync(@"INSERT INTO Value (dateValue, idVariable, value)
+                                            VALUES (@DateValue, @IdVariable, @Value)
+                                            ON CONFLICT (idVariable, dateValue) DO NOTHING;" , new
             {
                 IdVariable = t.idVariable,
-                DateValue = t.fecha,
+                DateValue =  Convert.ToDateTime(t.fecha),
                 Value = t.valor
             });
         }

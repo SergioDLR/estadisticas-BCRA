@@ -23,7 +23,7 @@ public class StatsBcraServices
         foreach (var stat in res)
         {
             stat.variation = 0;
-            var values = await conection.QueryAsync<Value>(@"select top 2 value.dateValue, value.idVariable, value.value, variable.cdSerie, variable.description from Value value inner join Variable variable on variable.idVariable = value.idVariable where value.idVariable = @Id order by value.dateValue desc",new{Id=stat.idVariable});
+            var values = await conection.QueryAsync<Value>(@"select  value.dateValue, value.idVariable, value.value, variable.cdSerie, variable.description from Value value inner join Variable variable on variable.idVariable = value.idVariable where value.idVariable = @Id order by value.dateValue desc",new{Id=stat.idVariable});
             var enumerable = values as Value[] ?? values.ToArray();
             if (enumerable.Count() == 2 && enumerable[1].value != 0)
             {
