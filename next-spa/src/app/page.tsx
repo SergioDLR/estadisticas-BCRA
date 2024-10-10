@@ -9,7 +9,7 @@ const stats = await axios.get<{
     value: number
     variation: number
   }[]
-}>('http://localhost:5096/statsbcra')
+}>('https://estadisticas-bcra-production.up.railway.app/statsbcra')
 
 export default function Home() {
   return (
